@@ -28,7 +28,10 @@ FParser::Parse(std::string fpage, std::string fpage_static_data) {
             BOLD_LIGHT_WHITE_COLOR std::cout << " " << information + "\n"; RESETB  
         }
         else if(keyword == "Description") {
-            LIGHT_WHITE_COLOR std::cout << " " << information << "\n\n"; RESETB
+            LIGHT_BLUE_COLOR std::cout << " " << information << "\n\n"; RESETB
+        }
+        else if(keyword == "Author") {
+            LIGHT_BLACK_COLOR std::cout << " " << information + "\n"; RESETB
         }
         else if(keyword == "Usage") {
             std::string code_block, description, block;
