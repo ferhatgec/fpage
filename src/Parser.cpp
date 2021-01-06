@@ -48,15 +48,41 @@ FParser::Parse(std::string fpage, std::string fpage_static_data) {
                     description = stringtools::GetBetweenString(block, "*", ":");
                     code_block  = stringtools::GetBetweenString(block, "<", ">");
                     
-
+                    std::vector<std::string> blocks = MakeTokenizable(code_block);
+                    
                     LIGHT_GREEN_COLOR std::cout << " *" << description << ":" << "\n";
                     
+                    std::cout << "   ";
+                    
                     /* TODO: Syntax highlighting */
-                    LIGHT_WHITE_COLOR std::cout << "   " << code_block << "\n\n"; RESETB
+                    LIGHT_WHITE_COLOR 
+                    for(unsigned i = 0; i < blocks.size(); i++) { 
+                         std::cout << "\033[1;9" << i + 1 << "m" << blocks[i] << " "; 
+                    }
+                    
+                    std::cout << "\n\n"; 
+                    RESETB
+                    
+                    blocks.clear();
                 }
             }
         }
     } else {
         /* List */
     }     
+}
+
+std::vector<std::string>
+FParser::MakeTokenizable(std::string code_block) {
+    std::vector<std::string> blocks;
+    
+    std::istringstream code_block_stream(code_block);
+    
+    std::string append;
+    
+    while(std::getline(code_block_stream, append, ' ')) {
+        blocks.push_back(append); 
+    }
+    
+    return blocks;
 }

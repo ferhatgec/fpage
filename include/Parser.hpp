@@ -10,12 +10,15 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 class FParser {
     std::string keyword,
                 information;
 public:
     void Parse(std::string fpage, std::string fpage_static_data);
+    
+    std::vector<std::string> MakeTokenizable(std::string code_block);
 };
 
 #endif // PARSER_HPP
