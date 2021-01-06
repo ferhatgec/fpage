@@ -1,0 +1,22 @@
+/* MIT License
+#
+# Copyright (c) 2021 Ferhat Geçdoğan All Rights Reserved.
+# Distributed under the terms of the MIT License.
+#
+# */
+
+#ifndef FPAGE_HPP
+#define FPAGE_HPP
+
+#include <iostream>
+#include <string>
+
+class FPage {
+public:
+    void Initialize(std::string page, bool local);
+
+    /* TODO: Turkish language support for FPages. */
+    std::string DEFAULT_DIRECTORY = "/usr/local/fpages/en/";
+};
+
+#endif // FPAGE_HPP

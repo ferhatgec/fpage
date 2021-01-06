@@ -1,0 +1,13 @@
+[Title]{ls}
+
+[Description]{list directory}
+
+[Usage]{
+ * list all files: <ls -1>
+ * do not ignore files starts with .: <ls -a | ls --all>
+ * do not list . and ..  directories: <ls -A | ls --almost-all>  
+ * long format list: <ls -l>
+ * long format list with units (kb, mb, gb..): <ls -la>
+ * long format list, sorted by modification date.: <ls -ltr> 
+}
+
