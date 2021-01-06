@@ -33,6 +33,9 @@ FParser::Parse(std::string fpage, std::string fpage_static_data) {
         else if(keyword == "Author") {
             LIGHT_BLACK_COLOR std::cout << " " << information + "\n"; RESETB
         }
+        else if(keyword == "License") {
+            LIGHT_MAGENTA_COLOR std::cout << " " << information + "\n"; RESETB
+        }
         else if(keyword == "Usage") {
             std::string code_block, description, block;
             
