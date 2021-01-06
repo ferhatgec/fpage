@@ -19,9 +19,12 @@ FPage::Initialize(std::string page, bool local) {
 
     if(local == false) {
         page_directory   = DEFAULT_DIRECTORY + page + ".fpage";
-        page_static_data = fsplusplus::ReadFileWithReturn(page_directory); 
+    } else {
+        page_directory   = fsplusplus::GetCurrentWorkingDir() + "/" + page + ".fpage";
     }
     
+    page_static_data = fsplusplus::ReadFileWithReturn(page_directory); 
+        
     FParser parser;
     
     std::ifstream readfile(page_directory.c_str());
@@ -43,10 +46,25 @@ int main(int argc, char** argv) {
         return 0; 
     }
     
-    std::string file(argv[1]);
+    std::string file = "";    
     
-    /* TODO: Check is fpage file exist */
-    main.Initialize(file, false);   
+    if(argv[1][0] == '-' && argv[1][1] == '-' && argv[1][2] == 'l') {
+        if(argc > 2) {
+            file.append(argv[2]);
+            
+            main.Initialize(file, true);
+        } else {
+            main.Initialize("fpage", false);
+        }
+        
+        return 0;
+    } else {
+        file.append(argv[1]);
+    
+        /* TODO: Check is fpage file exist */
+        main.Initialize(file, false);   
+    }
+       
     
     return 0;
 }
