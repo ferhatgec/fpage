@@ -36,16 +36,16 @@ FPage::Initialize(std::string page, bool local) {
 }
 
 int main(int argc, char** argv) {
+    FPage main;
+    
     if(argc < 2) {
-        /* TODO: Read 'fpage' fpage. */        
+        main.Initialize("fpage", false);
         return 0; 
     }
     
     std::string file(argv[1]);
     
     /* TODO: Check is fpage file exist */
-    FPage main;
-    
     main.Initialize(file, false);   
     
     return 0;
