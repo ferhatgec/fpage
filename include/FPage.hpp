@@ -11,6 +11,8 @@
 #include <iostream>
 #include <string>
 
+#define VERSION "0.1-beta-1"
+
 class FPage {
 public:
     void Initialize(std::string page, bool local);

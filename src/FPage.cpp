@@ -12,6 +12,7 @@
 #include <Parser.hpp>
 
 #include <FileSystemPlusPlus.hpp>
+#include <Colorized.hpp>
 
 void
 FPage::Initialize(std::string page, bool local) {
@@ -48,16 +49,44 @@ int main(int argc, char** argv) {
     
     std::string file = "";    
     
-    if(argv[1][0] == '-' && argv[1][1] == '-' && argv[1][2] == 'l') {
-        if(argc > 2) {
-            file.append(argv[2]);
+    if(argv[1][0] == '-' && argv[1][1] == '-') { 
+        switch(argv[1][2]) {
+            case 'l':
+            {
+                if(argc > 2) {
+                    file.append(argv[2]);
+                    
+                    main.Initialize(file, true);
+                } else {
+                    main.Initialize("fpage", false);
+                }
+                
+                break;
+            }
             
-            main.Initialize(file, true);
-        } else {
-            main.Initialize("fpage", false);
+            case 'v':
+            {
+                BOLD_LIGHT_RED_COLOR
+                std::cout << "Fegeya ";
+                
+                BOLD_LIGHT_YELLOW_COLOR
+                std::cout << "FPage ";
+                
+                BOLD_LIGHT_BLUE_COLOR
+                std::cout << "version: ";
+                
+                BOLD_LIGHT_MAGENTA_COLOR
+                std::cout << VERSION << "\n";
+            
+                break;
+            }
+            
+            default:
+            {
+                main.Initialize("fpage", false);
+                break;
+            }
         }
-        
-        return 0;
     } else {
         file.append(argv[1]);
     
