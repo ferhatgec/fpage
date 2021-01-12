@@ -1,0 +1,9 @@
+[Title]{fegeya flascript}
+
+[Description]{new generation programming language.}
+
+[Usage]{
+ * interpret code: <fla --b file>
+ * get version of flascript: <fla --v>
+}
+
