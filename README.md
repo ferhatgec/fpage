@@ -1,7 +1,7 @@
 # Fegeya FPage
 ## Fegeya FPage, new generation colorful pages.
 
-![einstein quotes 1](resources/quote.png)
+![einstein quotes 1](resources/quote.jpeg)
 
 ![read 'fpage' with fpage](resources/window.png)
 
