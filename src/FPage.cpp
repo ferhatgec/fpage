@@ -7,10 +7,12 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include <FPage.hpp>
 #include <Parser.hpp>
 #include <Locale.hpp>
+#include <Script.hpp>
 
 #include <FileSystemPlusPlus.hpp>
 #include <Colorized.hpp>
@@ -18,6 +20,8 @@
 void
 FPage::Initialize(std::string page, bool local) {
     FLocale locale;
+    FScript script;
+
     std::string page_directory, page_data, page_static_data;
 
     this->DEFAULT_LOCALE = locale.InitLocale(this->DEFAULT_LOCALE);
@@ -28,19 +32,27 @@ FPage::Initialize(std::string page, bool local) {
         page_directory   = fsplusplus::GetCurrentWorkingDir() + "/" + page + ".fpage";
     }
     
-    page_static_data = fsplusplus::ReadFileWithReturn(page_directory); 
-        
+    page_static_data = fsplusplus::ReadFileWithReturn(page_directory);
+
     FParser parser;
     
     std::ifstream readfile(page_directory.c_str());
     
     if(readfile.is_open()) {
-        while (std::getline(readfile, page_data)) { 
-        	parser.Parse(page_data, page_static_data);
+        while (std::getline(readfile, page_data)) {
+            script.Generate(page_data);
         }
         
         readfile.close();
-    } 
+    }
+
+    if(!script.generated.empty()) {
+        std::istringstream stream(script.generated);
+
+        for(std::string temp_line; std::getline(stream, temp_line); ) {
+            parser.Parse(temp_line, script.generated);
+        }
+    }
 }
 
 int main(int argc, char** argv) {

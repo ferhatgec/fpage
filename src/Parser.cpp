@@ -10,6 +10,8 @@
 #include <sstream>
 
 #include <Parser.hpp>
+#include <Script.hpp>
+
 #include <StringTools.hpp>
 #include <Colorized.hpp>
 
