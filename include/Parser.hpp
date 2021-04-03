@@ -16,6 +16,9 @@ class FParser {
     std::string keyword,
                 information;
 public:
+    FParser() = default;
+    ~FParser()= default;
+
     void Parse(std::string fpage, std::string fpage_static_data);
     
     std::vector<std::string> MakeTokenizable(std::string code_block);

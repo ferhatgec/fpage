@@ -10,16 +10,20 @@
 
 #include <FPage.hpp>
 #include <Parser.hpp>
+#include <Locale.hpp>
 
 #include <FileSystemPlusPlus.hpp>
 #include <Colorized.hpp>
 
 void
 FPage::Initialize(std::string page, bool local) {
+    FLocale locale;
     std::string page_directory, page_data, page_static_data;
 
+    this->DEFAULT_LOCALE = locale.InitLocale(this->DEFAULT_LOCALE);
+
     if(local == false) {
-        page_directory   = DEFAULT_DIRECTORY + page + ".fpage";
+        page_directory   = this->DEFAULT_DIRECTORY + this->DEFAULT_LOCALE + "/" + page + ".fpage";
     } else {
         page_directory   = fsplusplus::GetCurrentWorkingDir() + "/" + page + ".fpage";
     }

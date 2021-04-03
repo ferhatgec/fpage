@@ -11,14 +11,21 @@
 #include <iostream>
 #include <string>
 
+#include <Locale.hpp>
+
 #define VERSION "0.1-beta-1"
 
 class FPage {
 public:
+    FPage() = default;
+    ~FPage()= default;
+
     void Initialize(std::string page, bool local);
 
+    std::string DEFAULT_LOCALE = "en";
+
     /* TODO: Turkish language support for FPages. */
-    std::string DEFAULT_DIRECTORY = "/usr/local/fpages/en/";
+    std::string DEFAULT_DIRECTORY = "/usr/local/fpages/";
 };
 
 #endif // FPAGE_HPP
