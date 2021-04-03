@@ -15,6 +15,8 @@
 
 void 
 FParser::Parse(std::string fpage, std::string fpage_static_data) {
+    if(fpage.length() <= 1) return;
+
     keyword     = stringtools::GetBetweenString(fpage, "[", "]");
     
     if(fpage.front() != '}') {
@@ -22,7 +24,7 @@ FParser::Parse(std::string fpage, std::string fpage_static_data) {
     } else {
         information = stringtools::GetBetweenString(fpage, "[" + keyword + "]" + "{", "}");
     }
-    
+
     if(information != "error") {
         if(keyword == "Title") {
             BOLD_LIGHT_WHITE_COLOR std::cout << " " << information + "\n"; RESETB  
